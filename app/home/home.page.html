@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Open Trivia
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="!debutJeu" class="ion-padding">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Votre pseudo</ion-label>
+        <ion-input type="text" [(ngModel)]="pseudo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Difficulté</ion-label>
+        <ion-select [(ngModel)]="difficulte">
+          <ion-select-option value="easy">Facile</ion-select-option>
+          <ion-select-option value="medium">Moyen</ion-select-option>
+          <ion-select-option value="hard">Difficile</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-toggle [(ngModel)]="sauvegarder"></ion-toggle>
+        Sauvegarder mes informations
+      </ion-item>
+      <p *ngIf="errorMessage && errorMessage.length > 0" class="error-message">
+        {{ errorMessage }}
+      </p>
+      <ion-button expand="full" (click)="beginGame()">Commencer</ion-button>
+    </ion-list>
+  </div>
+
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>game</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <div class="ion-padding">
+    <ion-text color="primary">
+      <p class="ion-text-center">Bienvenue {{ pseudo }}</p>
+    </ion-text>
+
+    <div *ngIf="questionCourante != null">
+      <h3 class="ion-text-center" [innerHTML]="questionCourante.question"></h3>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" *ngFor="let answer of questionCourante.answers">
+            <ion-button (click)="reponse(answer)" expand="full" color="transparent" [ngClass]="{'good': questionSuivante && answer.correct, 'bad': questionSuivante && !answer.correct, unknown: !questionSuivante}">{{ answer.answer }}</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-button *ngIf="questionSuivante && !finJeu" (click)="nextQuestion()">Question suivante</ion-button>
+      <ion-button *ngIf="questionSuivante && finJeu" (click)="retour()">Retour</ion-button>
+    </div>
+  </div>
+</ion-content>
